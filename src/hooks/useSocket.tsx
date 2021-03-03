@@ -37,7 +37,7 @@ export const SocketProvider = ({ children, url }: SocketProviderProps) => {
     if (!url) return
     socket.current.onopen = (ev) => {
       setConnected(true)
-      console.log('open: ', ev)
+      // console.log('open: ', ev)
     }
     socket.current.onmessage = (em) => {
       const message = JSON.parse(em.data)
@@ -45,7 +45,7 @@ export const SocketProvider = ({ children, url }: SocketProviderProps) => {
       setData(message)
     }
     socket.current.onclose = (ec) => {
-      console.log('close: ', ec)
+      // console.log('close: ', ec)
       setConnected(false)
     }
     socket.current.onerror = (err) => {

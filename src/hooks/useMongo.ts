@@ -63,18 +63,16 @@ export const useMongo = () => {
         if (!nodes[props.database]) nodes[props.database] = {}
         if (props.properties && props.properties.results) {
           let elements = props.properties.results;
-          console.log(elements);
           let element: any = {}
-          elements.forEach((elem: any, i: number)=> {
+          elements.forEach((elem: any) => {
             if((elem.value.values[0] as Object).hasOwnProperty('$ref')) {
               element[elem._id] = 'ref'
             } else {
               element[elem._id] = typeof elem.value.values[0]
             }
-            element.id = i.toString()
           })
+          element.id = (Object.keys(nodes[props.database]).length + 1).toString()
           nodes[props.database][props.collection] = element
-          console.log(nodes[props.database])
         }
         break
       default:
